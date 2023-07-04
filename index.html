@@ -20,13 +20,50 @@
 
 </head>
 <body>
-   
-    <div id="app" class="container">
 
-        <h1>
-            {{ message }}
-        </h1>
+   <header>
+    <div class="text-center">
+        Livello di Esaurimento classe #101?</div>
+        <div class="progress">
+            <div class="progress-bar  bg-success" role="progressbar" style="width: 99%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">99%</div>
+          </div>
+    </header>
+    
 
+        <div id="app" class="container">
+            <div class="w-25 m-3">
+                <img src="img/e900637f-5dd5-4263-ada2-985bc8b0738f.jpg" alt="Madonne" class="img-fluid">
+            </div>
+           <form action="" @submit.prevent="addTodo()">
+                <input 
+                v-model="newTodo"
+                class="form-control form-control-sm"
+                required
+                type="text"  
+                placeholder="Volano Madonne Today in Messina?">
+                <!-- soluzione sporca per il click @click="todos.push(newTodo)"  e per svuotarlo newTodo= " "; MA è PREFERIBILE INSERIRLO IN METHODS in vue js -->
+                <button 
+                @click="addTodo()" 
+                type="button" 
+                class="btn btn-outline-success m-3 btn-lg">
+                Aggiungi Madonne
+                </button>
+           </form>
+           
+           <ul>
+            <li v-for="(singleTodo , i) in todos" class="m-3">
+                <span 
+                    :class="singleTodo.done == true ? 'mad-sbar' : '' ">
+                    {{singleTodo.text}}
+                </span>
+                <button 
+                    @click="removeTodo(i)" 
+                    class="border rounded-circle bg-success button-x">
+                     X
+                </button>
+            </li>
+        </ul>
+        </div>
     </div>
 
     <!-- BS Javascript -->
